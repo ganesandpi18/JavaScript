@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure Example</title>
+    <style>
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #counter {
+            font-size: 30px;
+            margin-top: 20px;
+            width: 300px;
+            height: 50px;
+            border: 1px dotted rgb(177, 176, 176);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Counter Example with Closure</h1>
+    
+    <button id="incrementBtn">Increment</button>
+    <button id="decrementBtn">Decrement</button>
+    <button id="resetBtn">Reset</button>
+    
+    <div id="counter">0</div>
+    
+    <script>
+        function createCounter() {
+            let count = 0; // The state is encapsulated inside the closure
+
+            return {
+                increment: function() {
+                    count++;  
+                    updateCounterDisplay();
+                },
+                decrement: function() {
+                    count--;  
+                    updateCounterDisplay();
+                },
+                reset: function() {
+                    count = 0;  
+                    updateCounterDisplay();
+                },
+                getCount: function() {
+                    return count;  
+                }
+            };
+        }
+
+        // Create the counter closure
+        const counter = createCounter();
+
+        // Update the counter display on the webpage
+        function updateCounterDisplay() {
+            document.getElementById("counter").textContent = counter.getCount();
+        }
+
+        // Add event listeners to buttons
+        document.getElementById("incrementBtn").addEventListener("click", function() {
+            counter.increment();
+        });
+
+        document.getElementById("decrementBtn").addEventListener("click", function() {
+            counter.decrement();
+        });
+
+        document.getElementById("resetBtn").addEventListener("click", function() {
+            counter.reset();
+        });
+    </script>
+
+</body>
+</html>

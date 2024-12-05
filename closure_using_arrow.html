@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure Example</title>
+    <style>
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #counter {
+            font-size: 30px;
+            margin-top: 20px;
+            width:300px;
+            height: 50px;
+            text-align: center;
+            border: 1px solid gray;
+        }
+        #incrementBtn{
+        background-color: green;
+        color:#fff;
+        }
+        #incrementBtn:hover{
+        background-color: rgb(57, 203, 57);
+        color:#fff;
+        }
+        #decrementBtn{
+        background-color: rgb(214, 13, 13);
+        color:#fff;
+        }
+        #decrementBtn:hover{
+        background-color: rgb(243, 84, 84);
+        }
+        #incrementBtn, #decrementBtn{
+        color:#fff;
+        border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Counter Example with Closure</h1>
+    
+    <button id="incrementBtn">Increment</button>
+    <button id="decrementBtn">Decrement</button>
+    <button id="resetBtn">Reset</button>
+    
+    <div id="counter">0</div>
+    
+    <script>
+        function createCounter() {
+            let count = 0;
+            const updateDisplay = () => document.getElementById("counter").textContent = count;
+
+            return {
+                increment: () => { count++; updateDisplay(); },
+                decrement: () => { count--; updateDisplay(); },
+                reset: () => { count = 0; updateDisplay(); },
+                getCount: () => count
+            };
+        }
+
+        const counter = createCounter();
+
+        document.getElementById("incrementBtn").addEventListener("click", counter.increment);
+        document.getElementById("decrementBtn").addEventListener("click", counter.decrement);
+        document.getElementById("resetBtn").addEventListener("click", counter.reset);
+    </script>
+
+</body>
+</html>
+
+
+
